@@ -12,13 +12,12 @@ function App() {
       <div className="App">
         <nav>
           <Link to="/home">Home</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/colorlist">Color List</Link>
+          <Link to="/">Login</Link>
           <Link to="bubblepage">Bubble List</Link>
         </nav>
 
+        <Route exact path="/" component={Login}/>
         <Route exact path="/bubblepage" component={BubblePage} />
-        <Route exact path="/login" component={Login} />
         <Route exact path="/colorlist" component={ColorList} />
         {/* 
           Build a PrivateRoute component that will 

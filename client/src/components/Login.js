@@ -11,17 +11,19 @@ export default function Login(props) {
       password: passwordRef.current.value,
     })
       .then(res => {
+
+        // const token = localStorage.getItem('token');
+        console.log(res.data.payload);
         // SUCCESS! Credentials are valid:
         //   1- Put the token string in local storage under a 'token' key
-        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('token', res.data.payload);
         // localStorage.setItem('token', JSON.stringify(myArray));
         //   2- Redirect users to the /quotes route
-
         props.history.push('/')
       })
       .catch(error => {
         // Alert a sensible message pulled from the error object
-        alert(error.message);
+        alert('There is an error');
       });
   };
 
@@ -29,9 +31,9 @@ export default function Login(props) {
     <div className='login'>
       <h3>Login here:</h3>
       <div className='login-inputs'>
-        username <input ref={usernameRef} type="text" />
+        Username: <input ref={usernameRef} type="text" />
         <br />
-        password <input ref={passwordRef} type="text" />
+        Password: <input ref={passwordRef} type="text" />
       </div>
 
       <div>

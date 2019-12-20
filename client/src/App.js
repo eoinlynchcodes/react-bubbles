@@ -13,7 +13,7 @@ function App() {
         <nav>
           <Link to="/home">Home</Link>
           <Link to="/">Login</Link>
-          <Link to="bubblepage">Bubble List</Link>
+          {/* <Link to="bubblepage">Bubble Page</Link> */}
         </nav>
 
         <Route exact path="/" component={Login}/>

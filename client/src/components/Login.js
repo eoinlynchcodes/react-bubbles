@@ -19,7 +19,7 @@ export default function Login(props) {
         localStorage.setItem('token', res.data.payload);
         // localStorage.setItem('token', JSON.stringify(myArray));
         //   2- Redirect users to the /quotes route
-        props.history.push('/')
+        props.history.push('/bubblepage')
       })
       .catch(error => {
         // Alert a sensible message pulled from the error object

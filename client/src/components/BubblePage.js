@@ -13,9 +13,13 @@ const BubblePage = () => {
 useEffect(() => {
   const token = localStorage.getItem('token');
 
-  axios().get('http://localhost:5000/api/colors')
+  axios().get('http://localhost:5000/api/colors', {
+    headers: {
+      Authorization: 'ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98'
+    }
+  })
   .then(response => {
-    console.log(response);
+    console.log(response.data);
     setColorList(response.data);
   })
   .catch(error => {
@@ -26,9 +30,9 @@ useEffect(() => {
 
   return (
     <>
-    <h3>Data from BubblePage will render below.</h3>
-      {/* <ColorList colors={colorList} updateColors={setColorList} />
-      <Bubbles colors={colorList} /> */}
+    <h3>This is inside the return from 'BubblePage.js'</h3>
+      <ColorList colors={colorList} updateColors={setColorList} />
+      <Bubbles colors={colorList} />
     </>
   );
 };

@@ -31,7 +31,6 @@ const ColorList = ({ colors, updateColors }) => {
       .then( response => {
       updateColors(
         [...colors.filter(color => color.id !== colorToEdit.id),response.data]);
-
       setEditing(false);
     })
     .catch(error => {
@@ -45,6 +44,7 @@ const ColorList = ({ colors, updateColors }) => {
       axios.delete(`http://localhost:5000/api/colors/${color.id}`, {
       headers: {
         Authorization: token,
+        
       }
     })
     .then(response => {

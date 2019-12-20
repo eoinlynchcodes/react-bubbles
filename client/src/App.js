@@ -19,10 +19,7 @@ function App() {
         <Route exact path="/" component={Login}/>
         <Route exact path="/bubblepage" component={BubblePage} />
         <Route exact path="/colorlist" component={ColorList} />
-        {/* 
-          Build a PrivateRoute component that will 
-          display BubblePage when you're authenticated 
-        */}
+        
       </div>
     </Router>
   );

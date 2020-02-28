@@ -12,6 +12,10 @@ const ColorList = ({ colors, updateColors }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [savedData, setSavedData] = useState({
+    color: '',
+    code: { hex: ''}
+    });
 
   const editColor = color => {
     setEditing(true);
@@ -19,12 +23,30 @@ const ColorList = ({ colors, updateColors }) => {
   };
 
   const saveEdit = e => {
+    // debugger
     e.preventDefault();
     // Make a put request to save your updated color
     // think about where will you get the id from...
     // where is is saved right now?
+    console.log(colorToEdit.color);
+    console.log(colorToEdit.code.hex);
+    console.log(colorToEdit.id);
+    
+    setColorToEdit({
+      color: colorToEdit.color,
+      code: { hex: colorToEdit.code.hex} 
+    })
 
-    // console.log(e.target);
+    console.log(colorToEdit);
+  
+    withAuth().put('http://localhost:5000/api/colors/${color.id}', colorToEdit)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    history.push('/bubblepage');
   };
 
   const history = useHistory();
@@ -50,7 +72,6 @@ const ColorList = ({ colors, updateColors }) => {
             <span>
               <span className="delete" onClick={e => {
                     e.stopPropagation();
-                    console.log(color)
                     deleteColor(color)
                   }
                 }>
@@ -66,7 +87,10 @@ const ColorList = ({ colors, updateColors }) => {
         ))}
       </ul>
       {editing && (
-        <form onSubmit={saveEdit}>
+        <form onSubmit={saveEdit} >
+          {/* // 
+          onSubmit={saveEdit}> 
+          Above is taken from inside the form tags. */}
           <legend>edit color</legend>
           <label>
             color name:
@@ -90,8 +114,8 @@ const ColorList = ({ colors, updateColors }) => {
             />
           </label>
           <div className="button-row">
-            <button type="submit">save</button>
-            <button onClick={() => setEditing(false)}>cancel</button>
+            <button type="submit">Save Changes</button>
+            <button onClick={() => setEditing(false)}>Cancel</button>
           </div>
         </form>
       )}

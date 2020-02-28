@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import withAuth from '../axiosWithAuth/index';
+import { useHistory } from "react-router-dom";
 
 const initialColor = {
   color: "",
@@ -21,10 +23,22 @@ const ColorList = ({ colors, updateColors }) => {
     // Make a put request to save your updated color
     // think about where will you get the id from...
     // where is is saved right now?
+
+    // console.log(e.target);
   };
+
+  const history = useHistory();
 
   const deleteColor = color => {
     // make a delete request to delete this color
+    withAuth().delete(`http://localhost:5000/api/colors/${color.id}`)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    history.push('/bubblepage');
   };
 
   return (
@@ -36,6 +50,7 @@ const ColorList = ({ colors, updateColors }) => {
             <span>
               <span className="delete" onClick={e => {
                     e.stopPropagation();
+                    console.log(color)
                     deleteColor(color)
                   }
                 }>

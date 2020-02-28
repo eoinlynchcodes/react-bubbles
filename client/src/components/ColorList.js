@@ -60,6 +60,7 @@ const ColorList = ({ colors, updateColors }) => {
     history.push('/bubblepage');
   };
 
+
   return (
     <div className="colors-wrap">
       <p>colors</p>

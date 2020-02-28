@@ -28,10 +28,11 @@ const Login = () => {
       // Need to pass the correct data to localStorage.
       // Use console.log to check and ensure.
       localStorage.setItem('token', response.data.payload)
-      history.push('/youmadeit');
+      history.push('/bubblepage');
     })
     .catch((error) => {
       console.log(error);
+      alert('There has been an error. You entered incorrect data or the system is broken. Please try again later.');
     })
 
   }

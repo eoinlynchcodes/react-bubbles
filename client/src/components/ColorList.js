@@ -30,18 +30,15 @@ const ColorList = ({ colors, updateColors }) => {
     // where is is saved right now?
     console.log(colorToEdit.color);
     console.log(colorToEdit.code.hex);
-    console.log(colorToEdit.id);
     
     setColorToEdit({
       color: colorToEdit.color,
       code: { hex: colorToEdit.code.hex} 
     })
-
-    console.log(colorToEdit);
-  
-    withAuth().put('http://localhost:5000/api/colors/${color.id}', colorToEdit)
+    console.log(colorToEdit.id);
+    withAuth().put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
     .then((response) => {
-      console.log(response);
+      console.log(response.data);
     })
     .catch((error) => {
       console.log(error);

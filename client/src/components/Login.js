@@ -24,9 +24,6 @@ const Login = () => {
     event.preventDefault();
     axios.post(`${baseURL}/api/login`, loginform)
     .then((response) => {
-      console.log(response.data.payload);
-      // Need to pass the correct data to localStorage.
-      // Use console.log to check and ensure.
       localStorage.setItem('token', response.data.payload)
       history.push('/bubblepage');
     })
@@ -40,9 +37,9 @@ const Login = () => {
   return (
     <>
       <h1>Welcome to the Bubble App!</h1>
-      <p>Build a login page here</p>
 
       <form onSubmit={event => handleSubmit(event)}>
+        <h1>Login Here:</h1>
         <label>Username:</label>
         <input 
         name="username"
